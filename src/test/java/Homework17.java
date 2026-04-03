@@ -43,12 +43,10 @@ public class Homework17 extends BaseTest {
         WebElement addToBtn = driver.findElement(By.xpath("//button[@class='btn-add-to']"));
         addToBtn.click();
 
-        WebElement anitaPlaylist = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/header/div[3]/div/section[1]/ul/li[5]"));
-        anitaPlaylist.click();
+        WebElement homework17Playlist = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/header/div[3]/div/section[1]/ul/li[5]"));
+        homework17Playlist.click();
 
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath()))
+        WebElement notification = driver.findElement(By.xpath("////div[@class='success show']]"));
         }
 
         
