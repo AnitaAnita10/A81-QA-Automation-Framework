@@ -1,0 +1,60 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+
+public class Homework17 extends BaseTest {
+    @Test
+    public void addSongToPlaylist() throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        String url = "https://qa.koel.app/";
+        driver.get(url);
+
+        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+        emailField.clear();
+        emailField.sendKeys("anita.surewicz@testpro.io=");
+
+        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys("AnitaAnita1029");
+
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+        WebElement searchField = driver.findElement(By.xpath("//input[@type='search']"));
+        searchField.clear(); //
+        searchField.sendKeys("Episode 2");
+
+        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
+        viewAllBtn.click();
+
+        WebElement firstSong = driver.findElement(By.xpath ("//tr[@class='song-item'][1]"));
+        firstSong.click();
+
+        WebElement addToBtn = driver.findElement(By.xpath("//button[@class='btn-add-to']"));
+        addToBtn.click();
+
+        WebElement anitaPlaylist = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/header/div[3]/div/section[1]/ul/li[5]"));
+        anitaPlaylist.click();
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath()))
+        }
+
+        
+
+
+
+
+
+}
