@@ -54,7 +54,7 @@ public class Homework17 extends BaseTest {
         );
 
         String actualMessage = notification.getText().trim();
-        String expectedSongAddedMessage = "Added 1 song into \"Homework17\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Homework17.\"";
 
         Assert.assertEquals(actualMessage, expectedSongAddedMessage);
 
