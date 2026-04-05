@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,11 +28,29 @@ public class Homework17 extends BaseTest {
 
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        WebElement searchField = driver.findElement(By.xpath("//input[@type='search']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement searchField = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//input[@type='search']")
+                )
+        );
         searchField.clear(); //
         searchField.sendKeys("Episode 2");
 
-        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
+
+
+        WebElement viewAllBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//*[@data-test='view-all-songs-btn']")
+                )
+        );
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", viewAllBtn);
+
+
+        wait.until(ExpectedConditions.elementToBeClickable(viewAllBtn));
+
         viewAllBtn.click();
 
         WebElement firstSong = driver.findElement(By.xpath("//tr[@class='song-item'][1]"));
@@ -42,8 +61,6 @@ public class Homework17 extends BaseTest {
 
         WebElement homework17Playlist = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/header/div[3]/div/section[1]/ul/li[5]"));
         homework17Playlist.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         WebElement notification = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']"))
