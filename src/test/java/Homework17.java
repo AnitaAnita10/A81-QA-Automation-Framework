@@ -13,15 +13,11 @@ import java.time.Duration;
 public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://qa.koel.app/";
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+        emailField.click();
         emailField.clear();
         emailField.sendKeys("anita.surewicz@testpro.io");
 
