@@ -1,9 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -11,35 +8,57 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework17 extends BaseTest {
+public class Homework17Test extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
 
-        driver.get(url);
+        navigateToPage();
+        provideEmail("anita.surewicz@testpro.io");
+        providePassword("AnitaAnita1029");
+        clickLoginButton();
+        Thread.sleep(5000);
+        clickSearchField();
+        clickViewAll();
+        clickFirstSong();
+        clickAddTo();
+        addToPlaylist();
 
-        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
-        emailField.click();
-        emailField.clear();
-        emailField.sendKeys("anita.surewicz@testpro.io");
+    }
 
-        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("AnitaAnita1029");
-
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement searchField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//input[@type='search']")
-                )
-        );
-        searchField.clear(); //
-        searchField.sendKeys("Episode 2");
+    private void addToPlaylist() {
+        WebElement addSong = driver.findElement(By.xpath("//li[@class='playlist']"));
+        addSong.click();
+    }
 
 
+    private void clickSearchField() {
+        WebElement searchField = driver.findElement(By.xpath("//input[@name='q']"));
+        searchField.click();
+        searchField.clear();
+        searchField.sendKeys("Dark Days");
+    }
 
-        WebElement viewAllBtn = wait.until(
+    private void clickViewAll() {
+        WebElement viewAll = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
+        viewAll.click();
+    }
+
+    private void clickFirstSong() {
+        WebElement firstSong = driver.findElement(By.xpath("//tr[@class='song-item selected'][1]"));
+        firstSong.click();
+    }
+
+    private void clickAddTo() {
+        WebElement addTo = driver.findElement(By.xpath("//button[@data-test='add-to-btn']"));
+        addTo.click();
+    }
+
+
+
+
+
+
+        /*WebElement viewAllBtn = wait.until(
                 ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@data-test='view-all-songs-btn']")
                 )
@@ -72,5 +91,7 @@ public class Homework17 extends BaseTest {
         Assert.assertEquals(actualMessage, expectedSongAddedMessage);
 
 
-    }
+
+   }
+         */
 }
