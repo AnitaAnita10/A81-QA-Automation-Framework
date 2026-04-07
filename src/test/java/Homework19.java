@@ -8,7 +8,7 @@ public class Homework19 extends BaseTest{
 @Test
     public void deletePlayList() throws InterruptedException {
 
-        String ExpectedSongDeletedMessage = "Deleted playlist \"playlist name.\""
+        String ExpectedSongDeletedMessage = "Deleted playlist \"Homework19.\"";
 
         navigateToPage();
         provideEmail("anita.surewicz@testpro.io");
@@ -23,12 +23,12 @@ public class Homework19 extends BaseTest{
 }
 
     public void clickPlayList() throws InterruptedException {
-        WebElement playList = driver.findElement(By.xpath("//section[@id='playlists']//a[@href='#!/playlist/108367']"));
+        WebElement playList = driver.findElement(By.xpath("//section[@id='playlists']//a[contains(text(), 'Homework19')]"));
         playList.click();
         Thread.sleep(2000);
     }
 
-    private void clickDeletePlayList() { throws InterruptedException
+    private void clickDeletePlayList() throws InterruptedException {
         WebElement DeletePlayList = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         DeletePlayList.click();
         Thread.sleep(2000); 
