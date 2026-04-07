@@ -1,11 +1,15 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework19 extends BaseTest{
 
 @Test
     public void deletePlayList() throws InterruptedException {
+
+        String ExpectedSongDeletedMessage = "Deleted playlist \"playlist name.\""
+
         navigateToPage();
         provideEmail("anita.surewicz@testpro.io");
         providePassword("AnitaAnita1029");
@@ -14,20 +18,25 @@ public class Homework19 extends BaseTest{
 
         clickPlayList();
         clickDeletePlayList();
+        
+        Assert.assertEquals(getSongDeletedMessage(), ExpectedSongDeletedMessage);
 }
 
-
     public void clickPlayList() throws InterruptedException {
-        WebElement playList = driver.findElement(By.xpath(""));
+        WebElement playList = driver.findElement(By.xpath("//section[@id='playlists']//a[@href='#!/playlist/108367']"));
         playList.click();
-        Thread.sleep(2000); 
+        Thread.sleep(2000);
     }
 
     private void clickDeletePlayList() { throws InterruptedException
-        WebElement DeletePlayList = driver.findElement(By.xpath(""));
+        WebElement DeletePlayList = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         DeletePlayList.click();
         Thread.sleep(2000); 
     }
 
+    public String getSongDeletedMessage() {
+        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
+        return notification.getText();
+    }
 
 }
