@@ -20,7 +20,7 @@ public class Homework19 extends BaseTest{
     public void clickPlayList() throws InterruptedException {
         WebElement playList = driver.findElement(By.xpath(""));
         playList.click();
-        Thread.sleep(2000);
+        Thread.sleep(2000); 
     }
 
     private void clickDeletePlayList() { throws InterruptedException
