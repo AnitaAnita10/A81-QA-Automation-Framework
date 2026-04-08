@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -15,6 +17,7 @@ public class BaseTest {
 
     public WebDriver driver;
     public String url;
+    public WebDriverWait wait = null;
 
     @BeforeSuite
     static void setupClass() {
@@ -31,6 +34,8 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         url = BaseURL;
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         navigateToPage();
     }
 
@@ -43,14 +48,15 @@ public class BaseTest {
         driver.get(url);
     }
 
+
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
         emailField.clear();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
+        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
