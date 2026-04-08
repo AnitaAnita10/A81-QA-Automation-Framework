@@ -14,7 +14,7 @@ public class Homework19 extends BaseTest{
         provideEmail("anita.surewicz@testpro.io");
         providePassword("AnitaAnita1029");
         clickLoginButton();
-        Thread.sleep(3000); 
+        Thread.sleep(3000);
 
         clickPlayList();
         clickDeletePlayList();
