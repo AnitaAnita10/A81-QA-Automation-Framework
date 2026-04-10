@@ -24,25 +24,23 @@ public class Homework21 extends BaseTest {
 
     }
 
-    public String getRenamePlayListSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
-
     public void doubleClickPlayList() {
-        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='active']")));
         actions.doubleClick(playListElement).perform();
     }
 
     public void enterNewPlayListName() {
-        WebElement newPlayListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath()));
+        WebElement newPlayListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists'] //a[@class='active']")));
         newPlayListName.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         newPlayListName.sendKeys(newPlaylistName);
         newPlayListName.sendKeys(Keys.ENTER);
 
     }
 
-
+    public String getRenamePlayListSuccessMsg() {
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
+    }
 
 }
 
