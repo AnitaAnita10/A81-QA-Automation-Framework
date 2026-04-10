@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -6,12 +7,12 @@ import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest {
 
-    String newPlaylistName = "Anita Again";
+    String newPlaylistName = "AnitaAgain";
 
     @Test
     public void renamePlayList() {
 
-        String updatedPlayListMsg = "Updated playlist \"Anita Again.\"";
+        String updatedPlayListMsg = "Updated playlist \"AnitaAgain.\"";
 
         /*navigateToPage();*/
         provideEmail("anita.surewicz@testpro.io");
@@ -23,10 +24,26 @@ public class Homework21 extends BaseTest {
 
     }
 
+    public String getRenamePlayListSuccessMsg() {
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
+    }
+
     public void doubleClickPlayList() {
         WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
         actions.doubleClick(playListElement).perform();
     }
+
+    public void enterNewPlayListName() {
+        WebElement newPlayListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath()));
+        newPlayListName.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        newPlayListName.sendKeys(newPlaylistName);
+        newPlayListName.sendKeys(Keys.ENTER);
+
+    }
+
+
+
 }
 
 
