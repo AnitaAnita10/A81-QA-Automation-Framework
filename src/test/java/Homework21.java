@@ -1,3 +1,6 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,6 +21,11 @@ public class Homework21 extends BaseTest {
         enterNewPlayListName();
         Assert.assertEquals(getRenamePlayListSuccessMsg(),updatedPlayListMsg);
 
+    }
+
+    public void doubleClickPlayList() {
+        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
+        actions.doubleClick(playListElement).perform();
     }
 }
 
