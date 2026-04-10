@@ -25,13 +25,13 @@ public class Homework21 extends BaseTest {
     }
 
     public void doubleClickPlayList() {
-        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='active']")));
+        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         actions.doubleClick(playListElement).perform();
     }
 
     public void enterNewPlayListName() {
-        WebElement newPlayListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists'] //a[@class='active']")));
-        newPlayListName.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        WebElement newPlayListName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='name']")));
+        newPlayListName.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
         newPlayListName.sendKeys(newPlaylistName);
         newPlayListName.sendKeys(Keys.ENTER);
 
