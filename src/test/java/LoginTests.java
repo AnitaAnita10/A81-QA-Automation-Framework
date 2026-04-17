@@ -14,4 +14,13 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
+
+    @Test
+    public void loginEmptyEmailPassword() throws InterruptedException {
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail("").providePassword("dfdsafasd").clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
 }
