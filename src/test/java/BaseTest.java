@@ -32,6 +32,10 @@ public class BaseTest {
 
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
