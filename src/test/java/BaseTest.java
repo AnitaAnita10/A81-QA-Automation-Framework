@@ -123,6 +123,7 @@ public class BaseTest {
         browserOptions.setCapability("LT:Options", ltOptions);
 
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
+
     }
 
 }
