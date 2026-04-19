@@ -82,7 +82,8 @@ public class BaseTest {
             case "grid-chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), chromeOptions);
-
+            case "cloud-chrome":
+                return lambdaTest();
 
             default:
                 WebDriverManager.chromedriver().setup();
@@ -90,6 +91,23 @@ public class BaseTest {
                 options.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver();
         }
+    }
+
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("dev");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "anitasurewicz");
+        ltOptions.put("accessKey", "LT_hgaVN9YiSNM7rbc57cCQcJn6pf2JDbn3rO5bOT0vilgDCZs");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions):
     }
 
 }
