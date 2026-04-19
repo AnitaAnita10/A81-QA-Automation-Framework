@@ -43,40 +43,29 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-        public void setUpBrowser (String BaseURL) throws MalformedURLException {
-        threadDriver.set(pickBrowser(System.getProperty("browser")));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-    /*public void launchBrowser(String BaseURL) {
+    public void launchBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();*/
-
+        driver.manage().window().maximize();
         url = BaseURL;
 
-        /*wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
-        actions = new Actions(driver);*/
+        actions = new Actions(driver);
         navigateToPage();
     }
 
     @AfterMethod
-
-    public void tearDown() {
-        threadDriver.get().close();
-        threadDriver.remove();
-
-    }
-    /*public void closeBrowser() {
-        driver.quit();*/
+    public void closeBrowser() {
+        driver.quit();
     }
 
     public void navigateToPage() {
-        BaseTest.driver.get(BaseTest.url);
+        driver.get(url);
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
