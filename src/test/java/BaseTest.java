@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
@@ -20,7 +19,9 @@ import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
 
@@ -28,6 +29,8 @@ public class BaseTest {
     public static String url;
     public static WebDriverWait wait = null;
     public static Actions actions;
+
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     @BeforeSuite
     static void setupClass() {
@@ -99,7 +102,7 @@ public class BaseTest {
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
         browserOptions.setBrowserVersion("dev");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        HashMap<String, Object> ltOptions = new HashMap<>();
         ltOptions.put("username", "anitasurewicz");
         ltOptions.put("accessKey", "LT_hgaVN9YiSNM7rbc57cCQcJn6pf2JDbn3rO5bOT0vilgDCZs");
         ltOptions.put("project", "Untitled");
