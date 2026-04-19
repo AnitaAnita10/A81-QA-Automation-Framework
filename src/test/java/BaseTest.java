@@ -34,7 +34,7 @@ public class BaseTest {
 
     public static WebDriver getDriver() {
 
-        return threadDriver.get();
+        return threadDriver.getClass()
     }
 
     @BeforeSuite
