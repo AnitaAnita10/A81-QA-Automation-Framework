@@ -8,8 +8,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
             loginPage.provideEmail("anita.surewicz@testpro.io").providePassword("AnitaAnita1029").clickSubmit();
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
@@ -18,10 +18,10 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() throws InterruptedException {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.provideEmail("").providePassword("dfdsafasd").clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
 

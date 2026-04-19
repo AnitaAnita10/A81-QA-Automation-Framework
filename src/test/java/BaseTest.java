@@ -67,8 +67,9 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+    public void tearDown() {
+        threadDriver.get().quit();
+        threadDriver.remove();
     }
 
     public void navigateToPage() {
