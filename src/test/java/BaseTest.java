@@ -33,6 +33,7 @@ public class BaseTest {
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
+
         return threadDriver.get();
     }
 
@@ -43,7 +44,13 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+    public void setUpBrowser(String BaseURL) throws MalformedURLException {
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+
+
+    /*public void launchBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -55,7 +62,7 @@ public class BaseTest {
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
-        actions = new Actions(driver);
+        actions = new Actions(driver);*/
         navigateToPage();
     }
 
