@@ -122,7 +122,7 @@ public class BaseTest {
         ltOptions.put("w3c", true);
         browserOptions.setCapability("LT:Options", ltOptions);
 
-        return new RemoteWebDriver(new URL(hubURL), browserOptions):
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 
 }
