@@ -14,8 +14,9 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:6.0.1'
     implementaion 'io.cucumber:cucumber-testing:7.34.3'
+    implementaion 'io.cucumber:cucumber-core:7.34.3'
     implementaion 'io.cucumber:cucumber-java:7.34.3'
-    implementaion 'io.cucumber:cucumber-testing:7.34.3'
+    implementation 'io.cucumber.gherkin:37.0.0'
 
 }
 
