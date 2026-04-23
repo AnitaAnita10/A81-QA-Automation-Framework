@@ -1,5 +1,7 @@
-@CucumberOptions (
-        features = {""}
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+        features = {"src/test/resources/features"}
 )
 
 
