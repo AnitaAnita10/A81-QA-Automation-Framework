@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,7 @@ public class LoginStepDefinitions {
     WebDriver driver;
     WebDriverWait wait;
 
-    @Given("I open the browser")
+    @Before("I open the browser")
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
