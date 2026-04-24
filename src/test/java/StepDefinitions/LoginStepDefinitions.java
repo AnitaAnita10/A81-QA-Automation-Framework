@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -20,7 +21,7 @@ public class LoginStepDefinitions {
     WebDriver driver;
     WebDriverWait wait;
 
-    @Given("I open the browser")
+    @Before
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -30,7 +31,7 @@ public class LoginStepDefinitions {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @And("I am in the Koel login page")
+    @Given("I am in the Koel login page")
     public void iAmInTheKoelLoginPage() {
         driver.get("https://qa.koel.app/");
     }
@@ -58,5 +59,10 @@ public class LoginStepDefinitions {
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("img.avatar"))).isDisplayed());
 
+    }
+
+    @After
+    public void closeBrowser() {
+        driver.quit();
     }
 }
