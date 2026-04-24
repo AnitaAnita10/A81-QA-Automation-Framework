@@ -32,7 +32,7 @@ public class LoginStepDefinitions {
 
     @And("I am in the Koel login page")
     public void iAmInTheKoelLoginPage() {
-        driver.get("https://qa.koel.app/#!/home");
+        driver.get("https://qa.koel.app/");
     }
 
     @When("I input email {string}")
