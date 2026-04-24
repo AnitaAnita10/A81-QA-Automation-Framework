@@ -108,7 +108,7 @@ public class BaseTest {
         }
     }
 
-    public WebDriver lambdaTest() throws MalformedURLException {
+    public static WebDriver lambdaTest() throws MalformedURLException {
         String hubURL = "https://hub.lambdatest.com/wd/hub";
 
         ChromeOptions browserOptions = new ChromeOptions();
